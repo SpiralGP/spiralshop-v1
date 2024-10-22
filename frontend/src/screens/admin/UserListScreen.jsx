@@ -12,7 +12,7 @@ import {
 const UserListScreen = () => {
   const { data: users, refetch, isLoading, error } = useGetUsersQuery();
 
-  const [deleteUser, { isLoading: loadingDelete }] = useDeleteUserMutation();
+  const [deleteUser] = useDeleteUserMutation();
 
   const deleteHandler = async (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
@@ -60,7 +60,7 @@ const UserListScreen = () => {
                   )}
                 </td>
                 <td>
-                  <LinkContainer to={`admin/user/${user._id}/edit`}>
+                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
                     <Button variant="light" className="btn-sm">
                       <FaEdit />
                     </Button>
