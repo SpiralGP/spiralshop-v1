@@ -5,6 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
+import Searchbox from "./Searchbox";
 import logo from "../assets/logo.png";
 
 const Header = () => {
@@ -39,6 +40,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
+              <Searchbox />
               <LinkContainer to="/cart">
                 <Nav.Link>
                   <FaShoppingCart /> Basket
