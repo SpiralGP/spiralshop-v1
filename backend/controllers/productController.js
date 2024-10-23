@@ -5,11 +5,16 @@ import Product from "../models/productModel.js";
 // @route   GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 4; // Page size variable
+  const pageSize = 8; // Page size variable
   const page = Number(req.query.pageNumber) || 1; // Page number variable
-  const count = await Product.countDocuments(); // Number of documents Mongoose
 
-  const products = await Product.find({})
+  const keyword = req.query.keyword
+    ? { name: { $regex: req.query.keyword, $options: "i" } }
+    : {};
+
+  const count = await Product.countDocuments({ ...keyword }); // Number of documents Mongoose
+
+  const products = await Product.find({ ...keyword })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
   res.json({ products, page, pages: Math.ceil(count / pageSize) });
