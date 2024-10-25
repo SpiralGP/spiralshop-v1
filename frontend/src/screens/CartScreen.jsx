@@ -33,6 +33,10 @@ const CartScreen = () => {
     navigate("/login?redirect=/shipping");
   };
 
+  const continueShopping = () => {
+    navigate("/");
+  };
+
   return (
     <Row>
       <Col md={8}>
@@ -104,6 +108,16 @@ const CartScreen = () => {
                 onClick={checkoutHandler}
               >
                 Proceed To Checkout
+              </Button>
+            </ListGroupItem>
+            <ListGroupItem>
+              <Button
+                type="button"
+                className="btn-block"
+                disabled={cartItems.length === 0}
+                onClick={continueShopping}
+              >
+                Continue Shopping
               </Button>
             </ListGroupItem>
           </ListGroup>
